@@ -1,56 +1,35 @@
 public class Sportsman {
-    int point = 50;
-    int point1 = 50;
-    int point2 = 50;
-    int point3 = 50;
-    int point4 = 50;
-    public Sportsman(int point1, int point2, int point3, int point4) {
-        setPoint1(point1);
-        setPoint2(point2);
-        setPoint3(point3);
-        setPoint4(point4);
-    }
-    public Sportsman(int...point) {
-        for (int i = 0; i < point.length; i++) {
-            this.point = point[i];
-        }
-    }
-    public void setPoint1(int point1) {
-        if (point1 >= 50 && point1 <= 100) {
-            this.point1 = point1;
-        } else if (point1 > 100) {
-            this.point1 = 100;
-        }
+    int[] points;
+
+    public Sportsman(int... points) {
+        setPoints(points);
     }
 
-    public void setPoint2(int point2) {
-        if (point2 >= 50 && point2 <= 100) {
-            this.point2 = point2;
-        } else if (point2 > 100) {
-            this.point2 = 100;
-        }
-    }
-
-    public void setPoint3(int point3) {
-        if (point3 >= 50 && point3 <= 100) {
-            this.point3 = point3;
-        } else if (point3 > 100) {
-            this.point3 = 100;
-        }
-    }
-
-    public void setPoint4(int point4) {
-        if (point4 >= 50 && point4 <= 100) {
-            this.point4 = point4;
-        } else if (point4 > 100) {
-            this.point4 = 100;
-        }
-
-    }
-    public double theArithmeticMeanOfANumber(int... points) {
-        int sum = 0;
+    public void setPoints(int[] points) {
         for (int i = 0; i < points.length; i++) {
-            sum = (sum + points[i]/2);
-        } return sum;
+            if (points[i] >= 50 && points[i] <= 100) {
+                this.points[i] = points[i];
+            } else {
+                System.exit(1);
+            }
+        }
+    }
+
+
+    public double theArithmeticMeanOfANumber() {
+        double sum = 0;
+        for (int i = 0; i < points.length; i++) {
+            sum = (sum + points[i] / 2);
+        }
+        return sum;
+    }
+    public int equalPoints(Sportsman sportsman1, Sportsman sportsman2) {
+        if (sportsman1.theArithmeticMeanOfANumber() > sportsman2.theArithmeticMeanOfANumber()) {
+            return 1;
+        } else if (sportsman1.theArithmeticMeanOfANumber() < sportsman2.theArithmeticMeanOfANumber()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
